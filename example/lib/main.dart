@@ -1,8 +1,6 @@
+import 'package:flashlight_flutter/flashlight_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:flashlight_flutter/flashlight_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +14,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _flashlightFlutterPlugin = FlashlightFlutter();
+  bool _flashAvailable = false;
+  bool _torchLevelAvailable = false;
+  double _torchLevel = .0;
+  final _flashlightPlugin = FlashlightFlutter();
 
   @override
   void initState() {
@@ -25,25 +25,15 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _flashlightFlutterPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+    bool isFlashAvailable = await _flashlightPlugin.isFlashAvailable();
+    bool isTorchLevelAvailable = await _flashlightPlugin.isTorchLevelAvailable();
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _flashAvailable = isFlashAvailable;
+      _torchLevelAvailable = isTorchLevelAvailable;
     });
   }
 
@@ -51,11 +41,58 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        appBar: AppBar(title: const Text('Plugin example app')),
+        body: Column(
+          children: [
+            Text('Flash available: $_flashAvailable'),
+            Text('Torch available: $_torchLevelAvailable'),
+            Text('Torch level: $_torchLevel'),
+            ElevatedButton(
+              onPressed: () async {
+                final torchLevel = await _flashlightPlugin.getTorchLevel();
+                setState(() {
+                  _torchLevel = torchLevel;
+                });
+              },
+              child: Text('Get torch level'),
+            ),
+
+            ElevatedButton(
+              onPressed: () async {
+                await _flashlightPlugin.setTorchLevel(0.5);
+                final torchLevel = await _flashlightPlugin.getTorchLevel();
+                setState(() {
+                  _torchLevel = torchLevel;
+                });
+              },
+              child: Text('Set torch level: 0.5'),
+            ),
+
+            ElevatedButton(
+              onPressed: () async {
+                await _flashlightPlugin.setTorchLevel(0.7);
+                final torchLevel = await _flashlightPlugin.getTorchLevel();
+                setState(() {
+                  _torchLevel = torchLevel;
+                });
+              },
+              child: Text('Set torch level: 0.7'),
+            ),
+
+            ElevatedButton(
+              onPressed: () async {
+                await _flashlightPlugin.turnOn();
+              },
+              child: Text('ON'),
+            ),
+
+            ElevatedButton(
+              onPressed: () async {
+                await _flashlightPlugin.turnOff();
+              },
+              child: Text('OFF'),
+            ),
+          ],
         ),
       ),
     );

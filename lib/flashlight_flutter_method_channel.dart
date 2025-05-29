@@ -3,15 +3,37 @@ import 'package:flutter/services.dart';
 
 import 'flashlight_flutter_platform_interface.dart';
 
-/// An implementation of [FlashlightFlutterPlatform] that uses method channels.
-class MethodChannelFlashlightFlutter extends FlashlightFlutterPlatform {
-  /// The method channel used to interact with the native platform.
+class FlashlightFlutterMethodChannel extends FlashlightFlutterPlatform {
   @visibleForTesting
-  final methodChannel = const MethodChannel('flashlight_flutter');
+  final methodChannel = const MethodChannel('flashlight');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<bool> isFlashAvailable() async {
+    return await methodChannel.invokeMethod('isFlashAvailable');
+  }
+
+  @override
+  Future<bool> isTorchLevelAvailable() async {
+    return await methodChannel.invokeMethod('isTorchLevelAvailable');
+  }
+
+  @override
+  Future<void> setTorchLevel(double torchLevel) async {
+    return await methodChannel.invokeMethod('setTorchLevel', {'torchLevel': torchLevel});
+  }
+
+  @override
+  Future<double> getTorchLevel() async {
+    return await methodChannel.invokeMethod('getTorchLevel');
+  }
+
+  @override
+  Future<void> turnOn() async {
+    await methodChannel.invokeMethod('turnOn');
+  }
+
+  @override
+  Future<void> turnOff() async {
+    await methodChannel.invokeMethod('turnOff');
   }
 }

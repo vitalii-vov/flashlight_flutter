@@ -5,16 +5,13 @@ import 'package:flashlight_flutter/flashlight_flutter_method_channel.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFlashlightFlutter platform = MethodChannelFlashlightFlutter();
+  FlashlightFlutterMethodChannel platform = FlashlightFlutterMethodChannel();
   const MethodChannel channel = MethodChannel('flashlight_flutter');
 
   setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
-      channel,
-      (MethodCall methodCall) async {
-        return '42';
-      },
-    );
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+      return '42';
+    });
   });
 
   tearDown(() {

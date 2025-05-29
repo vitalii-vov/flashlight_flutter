@@ -4,10 +4,7 @@ import 'package:flashlight_flutter/flashlight_flutter_platform_interface.dart';
 import 'package:flashlight_flutter/flashlight_flutter_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFlashlightFlutterPlatform
-    with MockPlatformInterfaceMixin
-    implements FlashlightFlutterPlatform {
-
+class MockFlashlightFlutterPlatform with MockPlatformInterfaceMixin implements FlashlightFlutterPlatform {
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 }
@@ -15,8 +12,8 @@ class MockFlashlightFlutterPlatform
 void main() {
   final FlashlightFlutterPlatform initialPlatform = FlashlightFlutterPlatform.instance;
 
-  test('$MethodChannelFlashlightFlutter is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelFlashlightFlutter>());
+  test('$FlashlightFlutterMethodChannel is the default instance', () {
+    expect(initialPlatform, isInstanceOf<FlashlightFlutterMethodChannel>());
   });
 
   test('getPlatformVersion', () async {
