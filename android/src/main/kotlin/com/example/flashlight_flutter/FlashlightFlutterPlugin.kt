@@ -24,7 +24,7 @@ class FlashlightFlutterPlugin: FlutterPlugin, MethodCallHandler {
   private var torchLevel = 1.0;
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flashlight")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flashlight_flutter")
     channel.setMethodCallHandler(this)
 
     context = flutterPluginBinding.applicationContext

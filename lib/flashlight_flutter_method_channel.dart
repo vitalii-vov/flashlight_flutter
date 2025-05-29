@@ -5,7 +5,7 @@ import 'flashlight_flutter_platform_interface.dart';
 
 class FlashlightFlutterMethodChannel extends FlashlightFlutterPlatform {
   @visibleForTesting
-  final methodChannel = const MethodChannel('flashlight');
+  final methodChannel = const MethodChannel('flashlight_flutter');
 
   @override
   Future<bool> isFlashAvailable() async {
