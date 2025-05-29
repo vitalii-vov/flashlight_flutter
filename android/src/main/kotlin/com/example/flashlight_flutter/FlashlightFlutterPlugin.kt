@@ -1,4 +1,4 @@
-package com.example.flashlight
+package com.example.flashlight_flutter
 
 import android.content.Context
 import android.hardware.camera2.CameraCharacteristics
