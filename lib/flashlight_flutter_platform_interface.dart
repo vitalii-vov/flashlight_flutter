@@ -18,7 +18,9 @@ abstract class FlashlightFlutterPlatform extends PlatformInterface {
   }
 
   Future<bool> isTorchLevelAvailable() async {
-    throw UnimplementedError('isTorchLevelAvailable() has not been implemented.');
+    throw UnimplementedError(
+      'isTorchLevelAvailable() has not been implemented.',
+    );
   }
 
   Future<void> setTorchLevel(double torchLevel) async {

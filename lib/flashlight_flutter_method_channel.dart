@@ -19,7 +19,9 @@ class FlashlightFlutterMethodChannel extends FlashlightFlutterPlatform {
 
   @override
   Future<void> setTorchLevel(double torchLevel) async {
-    return await methodChannel.invokeMethod('setTorchLevel', {'torchLevel': torchLevel});
+    return await methodChannel.invokeMethod('setTorchLevel', {
+      'torchLevel': torchLevel,
+    });
   }
 
   @override

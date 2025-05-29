@@ -28,7 +28,8 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> initPlatformState() async {
     bool isFlashAvailable = await _flashlightPlugin.isFlashAvailable();
-    bool isTorchLevelAvailable = await _flashlightPlugin.isTorchLevelAvailable();
+    bool isTorchLevelAvailable =
+        await _flashlightPlugin.isTorchLevelAvailable();
 
     if (!mounted) return;
 
