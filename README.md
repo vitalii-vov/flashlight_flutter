@@ -33,13 +33,13 @@ Future<void> example() async {
   
       //  get current brightness level
       final torchLevel = await _flash.getTorchLevel();
-  
-      //  turn on brightness
-      await _flash.turnOn();
-  
-      //  turn off brightness
-      await _flash.turnOff();
     }
+
+    //  turn on brightness
+    await _flash.turnOn();
+  
+    //  turn off brightness
+    await _flash.turnOff();
   }
 }
 ```

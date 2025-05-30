@@ -1,3 +1,7 @@
+## [1.0.3] - 2025-05-29
+### Added
+- README changed.
+
 ## [1.0.2] - 2025-05-29
 ### Added
 - Added documentation comments for public API.
