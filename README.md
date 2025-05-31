@@ -1,7 +1,12 @@
 # flashlight_flutter
-
 Flutter plugin for LED control on iOS and Android.
+
+![Pub Version](https://img.shields.io/pub/v/flashlight_flutter.svg?style=for-the-badge)
+![Pub Likes](https://img.shields.io/pub/likes/flashlight_flutter?style=for-the-badge)
+<!--![Pub Popularity](https://img.shields.io/pub/popularity/flashlight_flutter?style=for-the-badge)-->
+
 https://pub.dev/packages/flashlight_flutter
+
 
 &nbsp;<br>
 ## Installation
