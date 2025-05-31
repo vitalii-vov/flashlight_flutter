@@ -1,3 +1,7 @@
+## [1.0.4] - 2025-05-30
+### Added
+- Internal classes are hidden.
+
 ## [1.0.3] - 2025-05-29
 ### Added
 - README changed.
